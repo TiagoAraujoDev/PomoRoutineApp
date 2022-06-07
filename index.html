@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PomoRoutine</title>
+    <link rel="stylesheet" href="style.css" />
+    <!--Bootstrap-->
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+  </head>
+  <body>
+    <!--=========================== Timer =================================-->
+    <section
+      id="timer"
+      class="d-flex justify-content-center align-items-center min-vh-100"
+    >
+      <div class="d-flex flex-column align-items-center gap-5">
+        <div class="btn-group" aria-label="Buttons to configure timer">
+          <button
+            id="sessionSetting"
+            type="button"
+            class="btn btn-outline-secondary"
+          >
+            Session
+          </button>
+          <button
+            id="breakSetting"
+            type="button"
+            class="btn btn-outline-secondary"
+          >
+            Break
+          </button>
+          <button
+            id="longBreakSetting"
+            type="button"
+            class="btn btn-outline-secondary"
+          >
+            Long Break
+          </button>
+        </div>
+        <div id="timerDisplay">
+          <span id="minText" class="fs-1 px-2">25</span
+          ><span class="fs-1">:</span
+          ><span id="secText" class="fs-1 px-2">00</span>
+        </div>
+        <div id="timerControlsBtn" class="d-grid gap-2 d-md-block">
+          <button id="startBtn" class="btn btn-success" type="button">
+            Start
+          </button>
+          <button on id="pauseBtn" class="btn btn-danger" type="button">
+            Pause
+          </button>
+          <button id="resetBtn" class="btn btn-secondary" type="button">
+            Reset
+          </button>
+        </div>
+      </div>
+    </section>
+    <!--=========================== Session Modal =================================-->
+    <div id="sessionModal" class="modal mt-4" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content bg-light">
+          <div class="modal-header justify-content-center">
+            <h5 class="modal-title">Session Settings</h5>
+          </div>
+          <div class="modal-body d-flex flex-column align-items-center">
+            <label for="minSession"
+              >How many minutes should the session last?</label
+            >
+            <input
+              id="minSession"
+              type="number"
+              name="minutes"
+              class="form-control form-control-sm mt-2 w-50"
+              value="25"
+            />
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button
+              id="closeModalbtn"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary saveTimeBtn">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--=========================== Break Modal =================================-->
+    <div id="breakModal" class="modal mt-4" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content bg-light">
+          <div class="modal-header justify-content-center">
+            <h5 class="modal-title">Break Settings</h5>
+          </div>
+          <div class="modal-body d-flex flex-column align-items-center">
+            <label for="minBreak"
+              >How many minutes should the break last?</label
+            >
+            <input
+              id="minBreak"
+              type="number"
+              name="minutes"
+              class="form-control form-control-sm mt-2 w-50"
+              value="5"
+            />
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button
+              id="closeModalbtn"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary saveTimeBtn">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--=========================== Long break Modal =================================-->
+    <div id="longBreakModal" class="modal mt-4" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content bg-light">
+          <div class="modal-header justify-content-center">
+            <h5 class="modal-title">Long Break Settings</h5>
+          </div>
+          <div class="modal-body d-flex flex-column align-items-center">
+            <label for="min"
+              >How many minutes should the long break last?</label
+            >
+            <input
+              id="minLongBreak"
+              type="number"
+              name="minutes"
+              class="form-control form-control-sm mt-2 w-50"
+              value="10"
+            />
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button
+              id="closeModalbtn"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button  type="button" class="btn btn-primary saveTimeBtn">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>
