@@ -26,7 +26,7 @@ minText.innerText = minSessionInput.value;
 
 let breakCounter = 0;
 function countdownTimer() {
-  if (breakCounter <= 4) {
+  if (breakCounter <= 2) {
     if (timeSession != 0) {
       let minutes = Math.floor(timeSession / 60000);
       let seconds = ((timeSession % 60000) * 1000) / 1000000;
@@ -35,7 +35,11 @@ function countdownTimer() {
       secText.innerText = format(seconds);
 
       timeSession -= 1000;
+      
     } else if (timeSession == 0) {
+      if (timeSession == 0) {
+        clearInterval(interval)
+      }
       let minutes = Math.floor(timeBreak / 60000);
       let seconds = ((timeBreak % 60000) * 1000) / 1000000;
       const minText = document.getElementById('minText');
@@ -45,8 +49,10 @@ function countdownTimer() {
       secText.innerText = format(seconds);
 
       timeBreak -= 1000;
-      /* FIX THIS */
-      breakCounter++;
+      if (timeBreak == 0) {
+        timeBreak = parseInt(minBreakInput.value) * 60000;
+        breakCounter++;
+      }
     }
   } else {
     let minutes = Math.floor(timeLongBreak / 60000);
@@ -59,9 +65,12 @@ function countdownTimer() {
 
     timeLongBreak -= 1000;
     /* BUG */
-    breakCounter = 0;
-    timeSession = minSessionInput.value;
-    timeBreak = minBreakInput.value;
+    if (timeLongBreak == 0) {
+      breakCounter = 0;
+      timeSession = parseInt(minSessionInput.value) * 60000;
+      timeBreak = parseInt(minBreakInput.value) * 60000;
+      timeLongBreak = parseInt(minLongBreakInput.value) * 60000;
+    }
   }
 }
 
@@ -105,5 +114,5 @@ longBreakBtn.addEventListener('click', () => {
 
 startBtn.addEventListener('click', () => {
   countdownTimer();
-  setInterval(countdownTimer, 1000);
+  let interval = setInterval(countdownTimer, 1000);
 });
