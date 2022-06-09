@@ -41,6 +41,13 @@
           >
             Long Break
           </button>
+          <button
+            id="quantitySession"
+            type="button"
+            class="btn btn-outline-secondary"
+          >
+            Quantity of Sessions
+          </button>
         </div>
         <div id="timerDisplay">
           <span id="minText" class="fs-1 px-2">25</span
@@ -64,8 +71,9 @@
     <div id="sessionModal" class="modal mt-4" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content bg-light">
-          <div class="modal-header justify-content-center">
-            <h5 class="modal-title">Session Settings</h5>
+          <div class="modal-header flex-column justify-content-center">
+            <h5 class="modal-title">Session</h5>
+            <p class="text-muted mb-0">Settings</p>
           </div>
           <div class="modal-body d-flex flex-column align-items-center">
             <label for="minSession"
@@ -88,7 +96,9 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary saveTimeBtn">Save changes</button>
+            <button type="button" class="btn btn-primary saveTimeBtn">
+              Save changes
+            </button>
           </div>
         </div>
       </div>
@@ -97,8 +107,9 @@
     <div id="breakModal" class="modal mt-4" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content bg-light">
-          <div class="modal-header justify-content-center">
-            <h5 class="modal-title">Break Settings</h5>
+          <div class="modal-header flex-column justify-content-center">
+            <h5 class="modal-title">Break</h5>
+            <p class="text-muted mb-0">Settings</p>
           </div>
           <div class="modal-body d-flex flex-column align-items-center">
             <label for="minBreak"
@@ -121,7 +132,9 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary saveTimeBtn">Save changes</button>
+            <button type="button" class="btn btn-primary saveTimeBtn">
+              Save changes
+            </button>
           </div>
         </div>
       </div>
@@ -130,8 +143,9 @@
     <div id="longBreakModal" class="modal mt-4" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content bg-light">
-          <div class="modal-header justify-content-center">
-            <h5 class="modal-title">Long Break Settings</h5>
+          <div class="modal-header flex-column justify-content-center">
+            <h5 class="modal-title">Long Break</h5>
+            <p class="text-muted mb-0">Settings</p>
           </div>
           <div class="modal-body d-flex flex-column align-items-center">
             <label for="min"
@@ -154,7 +168,43 @@
             >
               Close
             </button>
-            <button  type="button" class="btn btn-primary saveTimeBtn">Save changes</button>
+            <button type="button" class="btn btn-primary saveTimeBtn">
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ========================== Quantity of sessions===============================-->
+    <div id="quantitySessionsModal" class="modal mt-4" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content bg-light">
+          <div class="modal-header flex-column justify-content-center">
+            <h5 class="modal-title">Quantity of sessions</h5>
+            <p class="text-muted mb-0">Settings</p>
+          </div>
+          <div class="modal-body d-flex flex-column align-items-center">
+            <label for="minSession">How many sessions do you want?</label>
+            <input
+              id="userSessionsQuantity"
+              type="number"
+              name="quantitySessions"
+              class="form-control form-control-sm mt-2 w-50"
+              value="4"
+            />
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button
+              id="closeModalbtn"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary saveTimeBtn">
+              Save changes
+            </button>
           </div>
         </div>
       </div>
