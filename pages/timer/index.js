@@ -37,7 +37,7 @@ function timerControl() {
       clearInterval(interval);
       startBtn.classList.remove('disabled');
     }
-    if (sessionCounter < userSessionsQuantity) {
+    if (timeSession === 1000 && sessionCounter < userSessionsQuantity) {
       timeBreak = parseFloat(minBreakInput.value) * 60000;
       sessionCounter++;
     }
@@ -53,7 +53,7 @@ function timerControl() {
     }
     console.log('b');
     countdownBreak();
-  } else if (sessionCounter === userSessionsQuantity) {
+  } else if (sessionCounter == userSessionsQuantity) {
     if (timeLongBreak === 1000) {
       playAlarm();
       clearInterval(interval);
@@ -78,6 +78,8 @@ function countdownSession() {
 
   minText.innerText = format(minutes);
   secText.innerText = format(seconds);
+  
+  showNextTimer('session');
 }
 
 function countdownBreak() {
@@ -91,6 +93,8 @@ function countdownBreak() {
 
   minText.innerText = format(minutes);
   secText.innerText = format(seconds);
+
+  showNextTimer('break');
 }
 
 function countdownLongBreak() {
@@ -104,16 +108,45 @@ function countdownLongBreak() {
 
   minText.innerText = format(minutes);
   secText.innerText = format(seconds);
+
+  showNextTimer('longBreak');
 }
 
 function playAlarm() {
   let audio = document.createElement('audio');
   audio.src = './assets/alarm.wav';
+  audio.volume = 0.7;
   audio.play();
 }
 
 function format(number) {
   return (number < 10 ? '0' : '') + number;
+}
+
+function showNextTimer(key) {
+  switch (key) {
+    case 'session':
+      if (timeSession === 0 && sessionCounter < userSessionsQuantity) {
+        minText.innerText = minBreakInput.value;
+        secText.innerText = '00';
+      } else if (timeSession === 0 && sessionCounter == userSessionsQuantity) {
+        minText.innerText = minLongBreakInput.value;
+        secText.innerText = '00';
+      }
+      break;
+    case 'break':
+      if (timeBreak === 0) {
+        minText.innerText = minSessionInput.value;
+        secText.innerText = '00';
+      }
+      break;
+    case 'longBreak':
+      if (timeLongBreak === 0) {
+        minText.innerText = minSessionInput.value;
+        secText.innerText = '00';
+      }
+      break;
+  }
 }
 
 /* =========== EventListeners ================ */
@@ -126,7 +159,6 @@ sessionBtn.addEventListener('click', () => {
   userSaveInputBtn[0].addEventListener('click', () => {
     timeSession = parseInt(minSessionInput.value) * 60000;
     minText.innerText = minSessionInput.value;
-    console.log('on');
   });
 });
 
@@ -162,7 +194,7 @@ quantitySessionsBtn.addEventListener('click', () => {
 
 startBtn.addEventListener('click', () => {
   timerControl();
-  interval = setInterval(timerControl, 150);
+  interval = setInterval(timerControl, 100);
   startBtn.classList.add('disabled');
 });
 

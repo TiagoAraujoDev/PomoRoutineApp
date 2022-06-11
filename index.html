@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PomoRoutine</title>
-    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./pages/timer/style.css" />
     <!--Bootstrap-->
     <link
       rel="stylesheet"
@@ -13,10 +17,34 @@
     />
   </head>
   <body>
+    <!--=========================== HEADER =================================-->
+    <header>
+      <nav class="navbar py-0 bg-secondary">
+        <div class="container">
+          <a class="navbar-brand text-white" href="#">PomoRoutine</a>
+          <ul class="nav navbar-nav d-flex flex-row d-flex flex-row me-5">
+            <li class="nav-item me-2"><a class="nav-link link-light" href="">Notes</a></li>
+            <li class="nav-item me-2"><a class="nav-link link-light" href="">TODo</a></li>
+            <li class="nav-item me-2"><a class="nav-link link-light" href="">Pomodoro</a></li>
+            <li class="nav-item me-2"><a class="nav-link link-light" href="">About</a></li>
+          </ul>
+          <div class="form-check form-switch">
+            <input
+            class="form-check-input text-secondary"
+            type="checkbox"
+            role="switch"
+            id="audiAuthorization"
+            checked
+            />
+            <label class="form-check-label" for="audiAuthorization"><i class='bx bxs-music text-white'></i></label>
+          </div>
+        </div>
+      </nav>
+    </header>
     <!--=========================== Timer =================================-->
     <section
       id="timer"
-      class="d-flex justify-content-center align-items-center min-vh-100"
+      class="d-flex justify-content-center align-items-center mt-5"
     >
       <div class="d-flex flex-column align-items-center gap-5">
         <div class="btn-group" aria-label="Buttons to configure timer">
@@ -46,7 +74,7 @@
             type="button"
             class="btn btn-outline-secondary"
           >
-            Quantity of Sessions
+            Sessions
           </button>
         </div>
         <div id="timerDisplay">
@@ -209,6 +237,6 @@
         </div>
       </div>
     </div>
-    <script src="./main.js"></script>
+    <script src="./pages/timer/index.js"></script>
   </body>
 </html>
