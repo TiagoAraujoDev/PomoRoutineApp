@@ -17,6 +17,7 @@ const pauseBtn = document.getElementById('pauseBtn');
 const resetBtn = document.getElementById('resetBtn');
 const minText = document.getElementById('minText');
 const secText = document.getElementById('secText');
+const audioAuthorization = document.getElementById('audioAuthorization');
 
 /* ========= TIMER ================*/
 
@@ -113,10 +114,12 @@ function countdownLongBreak() {
 }
 
 function playAlarm() {
-  let audio = document.createElement('audio');
-  audio.src = './assets/alarm.wav';
-  audio.volume = 0.7;
-  audio.play();
+  if (audioAuthorization.checked) {
+    let audio = document.createElement('audio');
+    audio.src = './assets/alarm.wav';
+    audio.volume = 0.7;
+    audio.play();
+  }
 }
 
 function format(number) {

@@ -19,24 +19,34 @@
   <body>
     <!--=========================== HEADER =================================-->
     <header>
-      <nav class="navbar py-0 bg-secondary">
+      <nav class="fixed-top container navbar py-0 bg-secondary">
         <div class="container">
           <a class="navbar-brand text-white" href="#">PomoRoutine</a>
           <ul class="nav navbar-nav d-flex flex-row d-flex flex-row me-5">
-            <li class="nav-item me-2"><a class="nav-link link-light" href="">Notes</a></li>
-            <li class="nav-item me-2"><a class="nav-link link-light" href="">TODo</a></li>
-            <li class="nav-item me-2"><a class="nav-link link-light" href="">Pomodoro</a></li>
-            <li class="nav-item me-2"><a class="nav-link link-light" href="">About</a></li>
+            <li class="nav-item me-2">
+              <a class="nav-link link-light myLi" href="">Notes</a>
+            </li>
+            <li class="nav-item me-2">
+              <a class="nav-link link-light myLi" href="">TODo</a>
+            </li>
+            <li class="nav-item me-2">
+              <a class="nav-link link-light myLi" href="">Pomodoro</a>
+            </li>
+            <li class="nav-item me-2">
+              <a class="nav-link link-light myLi" href="">About</a>
+            </li>
           </ul>
           <div class="form-check form-switch">
             <input
-            class="form-check-input text-secondary"
-            type="checkbox"
-            role="switch"
-            id="audiAuthorization"
-            checked
+              class="form-check-input text-secondary"
+              type="checkbox"
+              role="switch"
+              id="audioAuthorization"
+              checked
             />
-            <label class="form-check-label" for="audiAuthorization"><i class='bx bxs-music text-white'></i></label>
+            <label class="form-check-label" for="audiAuthorization"
+              ><i class="bx bxs-music text-white"></i
+            ></label>
           </div>
         </div>
       </nav>
@@ -44,7 +54,7 @@
     <!--=========================== Timer =================================-->
     <section
       id="timer"
-      class="d-flex justify-content-center align-items-center mt-5"
+      class="d-flex justify-content-center align-items-center vh-100"
     >
       <div class="d-flex flex-column align-items-center gap-5">
         <div class="btn-group" aria-label="Buttons to configure timer">
@@ -237,6 +247,36 @@
         </div>
       </div>
     </div>
+    <!--=========================== TODO =============================================-->
+    <section id="todo" class="vh-100 bg-success">
+      <h1 class="text-center text-dark pt-5">TODOs</h1>
+      <div class="container card mb-3">
+        <div class="card-header d-flex justify-content-center bg-light">
+          <button class="btn btn-outline-success">Add a Task</button>
+        </div>
+        <div class="card-body">
+          <div id="tasks" class="d-flex justify-content-between">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="taskCheckBox">
+              <label class="form-check-label" for="taskCheckBox">
+                <span id="task">task</span>
+              </label>
+            </div>
+            <div id="taskInteractions">
+              <i id="editTask" class='bx bx-edit-alt pe-auto'></i>
+              <i id="removeTask" class='bx bx-trash'></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="progressBar" class="container">
+        <div class="progress">
+          <div id="progressPercentage" class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+        </div>
+      </div>
+    </section>
     <script src="./pages/timer/index.js"></script>
+    <script src="./pages/todo/index.js"></script>
+    <script src="./pages/notes/index.js"></script>
   </body>
 </html>
