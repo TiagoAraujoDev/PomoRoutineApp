@@ -1,0 +1,25 @@
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+}
+
+header nav.myNav {
+  border-radius: 0px 0px 10px 10px;
+}
+
+header nav .container ul a.myLi:hover {
+  color: #0d6efd;
+}
+
+div.myTimerModal {
+  padding-top: 10%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+section#todo div.myModalBg {
+  padding-top: 10%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
