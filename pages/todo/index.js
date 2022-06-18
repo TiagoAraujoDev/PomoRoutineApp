@@ -1,82 +1,132 @@
 const addTaskBtn = document.getElementById('addTaskBtn');
-const tasksContainer = document.getElementById('tasks');
-const editTaskBtn = document.getElementById('editTaskBtn');
-const removeTaskBtn = document.getElementById('removeTaskBtn');
-const progressPercentage = document.getElementById('progressPercentage');
-const taskInput = document.getElementById('taskInput');
-const closeTaskModal = document.getElementById('closeTaskModal');
+const closeTaskModalBtn = document.getElementById('closeModalBtn');
 const addTaskModalBtn = document.getElementById('addTaskModalBtn');
 const taskModal = document.getElementById('taskModal');
 
 const tasks = [];
-taskCounter = 0;
 
-function updatePorcent() {
+function setTask() {
+  const taskInput = document.getElementById('taskInput');
+
+  const taskObject = {
+  taskDescription: "",
+  status: ""
+  }
+
+  taskObject.taskDescription = taskInput.value;
+
+  tasks.push(taskObject);
+  taskInput.value = "";
+}
+
+function updatePercentage() {
+  const progressPercentage = document.getElementById('progressPercentage');
   let counter = 0;
-  const taskCheckbox = document.querySelectorAll('#taskCheckbox');
-  const tasksArr = [...taskCheckbox];
-  if (tasksArr != 0) {
+
+  const  tasksArr = document.querySelectorAll('#taskCheckbox');
+
+  if (tasksArr.length != 0) {
     for (let index in tasksArr) {
       if (tasksArr[index].checked) {
         counter++;
       }
     }
-    let porcent = (100 / tasksArr.length) * counter;
-    progressPercentage.style.width = `${porcent.toFixed(2)}%`;
-    progressPercentage.innerText = `${porcent.toFixed(2)}%`;
+    let porcentage = (100 / tasksArr.length) * counter;
+
+    progressPercentage.style.width = `${porcentage.toFixed(2)}%`;
+    progressPercentage.innerText = `${porcentage.toFixed(2)}%`;
   } else {
     progressPercentage.style.width = '0%';
     progressPercentage.innerText = '0%';
   }
 }
 
-function checkTask(el) {
-  if (!el.childNodes[1].checked) {
-    el.childNodes[1].checked = true;
-    el.childNodes[3].classList.toggle('text-decoration-line-through');
-    updatePorcent();
+function showEditModal(editElement) {
+  const editModal = document.getElementById("editTaskModal");
+  editModal.classList.add("d-block");
+  const editChanges = document.getElementById("editChangesBtn");
+  editChanges.addEventListener("click", () => {
+   editTask(editElement);
+  });
+}
+
+function editTask(editElement) {
+  const taskText = editElement.parentNode.previousElementSibling.childNodes[3].innerText;
+  const taskIndex = tasks.findIndex(task => task.taskDescription === taskText);
+
+  tasks[taskIndex].taskDescription = editInput.value;
+
+  updateTasks();
+  updatePercentage();
+}
+
+function removeTask(trashElement) {
+  const taskText = trashElement.parentNode.previousElementSibling.childNodes[3].innerText;
+  const taskIndex = tasks.findIndex(task => task.taskDescription === taskText);
+
+  tasks.splice(taskIndex, 1);
+
+  updateTasks();
+  updatePercentage();
+}
+
+function createTask(task, status) {
+  const taskElement = document.createElement("div");
+  taskElement.classList.add("d-flex", "justify-content-between");
+  taskElement.innerHTML = `
+        <div class="d-flex align-items-center">
+          <input id="taskCheckbox" class="form-check-input" type="checkbox" onchange="checkTask(this)" ${status}>
+          <span class="ms-2">${task}</span>
+        </div>
+        <div">
+          <i id="editTaskBtn" class="bx bx-edit" onclick="editTask(this)"></i>
+          <i id="removeTaskBtn" class="bx bx-trash" onclick="removeTask(this)"></i>
+        </div>
+    `;
+  document.getElementById("tasks").appendChild(taskElement);
+}
+
+function checkTask(taskSelected) {
+  const taskText = taskSelected.nextElementSibling.innerText;
+
+  const taskIndex = tasks.findIndex(task => task.taskDescription === taskText);
+  if (tasks[taskIndex].status === "") {
+    tasks[taskIndex].status = "checked";
   } else {
-    el.childNodes[1].checked = false;
-    el.childNodes[3].classList.toggle('text-decoration-line-through');
-    updatePorcent();
+    tasks[taskIndex].status = "";
+  }
+
+  updateTasks();
+  updatePercentage();
+
+}
+
+function cleanTasks() {
+  const tasks = document.getElementById("tasks");
+
+  while (tasks.firstChild) {
+    tasks.removeChild(tasks.lastChild);
   }
 }
 
-function removeTask(el) {
-  el.parentNode.parentNode.remove();
-  tasks.pop();
-  updatePorcent();
-}
-function createTask(index) {
-  const after = document.getElementById('after');
-  after.insertAdjacentHTML('afterend', tasks[index]);
-}
+function updateTasks() {
+  cleanTasks();
 
-function addTaskArray() {
-  tasks.push(`
-    <div class="d-flex justify-content-between">
-      <div id="i" class="d-flex align-items-center" onclick="checkTask(this)">
-        <input id="taskCheckbox" class="form-check-input" type="checkbox">
-        <span class="ms-2" id="taskText">${taskInput.value}</span>
-      </div>
-      <div id="taskInteractions">
-        <i id="editTaskBtn" class="bx bx-edit"></i>
-        <i id="removeTaskBtn" class="bx bx-trash" onclick="removeTask(this)"></i>
-      </div>
-    </div>`);
+  tasks.forEach(item => createTask(item.taskDescription, item.status))
 }
 
 addTaskBtn.addEventListener('click', () => {
   taskModal.classList.add('d-block');
 });
 
-closeTaskModal.addEventListener('click', () => {
+closeTaskModalBtn.addEventListener('click', () => {
   taskModal.classList.remove('d-block');
 });
 
 addTaskModalBtn.addEventListener('click', () => {
-  addTaskArray();
-  createTask(taskCounter);
-  taskCounter++;
-  taskInput.value = '';
+  setTask();
+  updateTasks();
+  updatePercentage();
+  // document.getElementById("taskInput").value = "";
 });
+
