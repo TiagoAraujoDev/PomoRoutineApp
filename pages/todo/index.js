@@ -1,17 +1,19 @@
-const addTaskBtn = document.getElementById('addTaskBtn');
-const closeTaskModalBtn = document.getElementById('closeModalBtn');
-const addTaskModalBtn = document.getElementById('addTaskModalBtn');
-const taskModal = document.getElementById('taskModal');
+const addTaskBtn = document.getElementById("addTaskBtn");
+const closeTaskModalBtn = document.getElementById("closeModalBtn");
+const addTaskModalBtn = document.getElementById("addTaskModalBtn");
+const taskModal = document.getElementById("taskModal");
+const editModal = document.getElementById("editTaskModal");
+const editTaskInput = document.getElementById("editTaskInput");
 
 const tasks = [];
 
 function setTask() {
-  const taskInput = document.getElementById('taskInput');
+  const taskInput = document.getElementById("taskInput");
 
   const taskObject = {
-  taskDescription: "",
-  status: ""
-  }
+    taskDescription: "",
+    status: "",
+  };
 
   taskObject.taskDescription = taskInput.value;
 
@@ -20,48 +22,51 @@ function setTask() {
 }
 
 function updatePercentage() {
-  const progressPercentage = document.getElementById('progressPercentage');
-  let counter = 0;
+  const progressPercentage = document.getElementById("progressPercentage");
+  let taskCheckedCounter = 0;
 
-  const  tasksArr = document.querySelectorAll('#taskCheckbox');
+  const tasksArr = document.querySelectorAll("#taskCheckbox");
 
   if (tasksArr.length != 0) {
     for (let index in tasksArr) {
       if (tasksArr[index].checked) {
-        counter++;
+        taskCheckedCounter++;
       }
     }
-    let porcentage = (100 / tasksArr.length) * counter;
+    let porcentage = (100 / tasksArr.length) * taskCheckedCounter;
 
     progressPercentage.style.width = `${porcentage.toFixed(2)}%`;
     progressPercentage.innerText = `${porcentage.toFixed(2)}%`;
   } else {
-    progressPercentage.style.width = '0%';
-    progressPercentage.innerText = '0%';
+    progressPercentage.style.width = "0%";
+    progressPercentage.innerText = "0%";
   }
 }
 
 function showEditModal(editElement) {
-  const editModal = document.getElementById("editTaskModal");
   editModal.classList.add("d-block");
-  const editChanges = document.getElementById("editChangesBtn");
+  const editChanges = document.getElementById("editTaskModalBtn");
   editChanges.addEventListener("click", () => {
-   editTask(editElement);
+    editTask(editElement);
+    editModal.classList.remove("d-block");
   });
 }
 
 function editTask(editElement) {
-  const taskText = editElement.parentNode.previousElementSibling.childNodes[3].innerText;
+  const taskText =
+    editElement.parentNode.previousElementSibling.childNodes[3].innerText;
+
   const taskIndex = tasks.findIndex(task => task.taskDescription === taskText);
 
-  tasks[taskIndex].taskDescription = editInput.value;
+  tasks[taskIndex].taskDescription = editTaskInput.value;
 
   updateTasks();
   updatePercentage();
 }
 
 function removeTask(trashElement) {
-  const taskText = trashElement.parentNode.previousElementSibling.childNodes[3].innerText;
+  const taskText =
+    trashElement.parentNode.previousElementSibling.childNodes[3].innerText;
   const taskIndex = tasks.findIndex(task => task.taskDescription === taskText);
 
   tasks.splice(taskIndex, 1);
@@ -73,13 +78,14 @@ function removeTask(trashElement) {
 function createTask(task, status) {
   const taskElement = document.createElement("div");
   taskElement.classList.add("d-flex", "justify-content-between");
+
   taskElement.innerHTML = `
         <div class="d-flex align-items-center">
           <input id="taskCheckbox" class="form-check-input" type="checkbox" onchange="checkTask(this)" ${status}>
           <span class="ms-2">${task}</span>
         </div>
         <div">
-          <i id="editTaskBtn" class="bx bx-edit" onclick="editTask(this)"></i>
+          <i id="editTaskBtn" class="bx bx-edit" onclick="showEditModal(this)"></i>
           <i id="removeTaskBtn" class="bx bx-trash" onclick="removeTask(this)"></i>
         </div>
     `;
@@ -98,7 +104,6 @@ function checkTask(taskSelected) {
 
   updateTasks();
   updatePercentage();
-
 }
 
 function cleanTasks() {
@@ -112,21 +117,19 @@ function cleanTasks() {
 function updateTasks() {
   cleanTasks();
 
-  tasks.forEach(item => createTask(item.taskDescription, item.status))
+  tasks.forEach(item => createTask(item.taskDescription, item.status));
 }
 
-addTaskBtn.addEventListener('click', () => {
-  taskModal.classList.add('d-block');
+addTaskBtn.addEventListener("click", () => {
+  taskModal.classList.add("d-block");
 });
 
-closeTaskModalBtn.addEventListener('click', () => {
-  taskModal.classList.remove('d-block');
+closeTaskModalBtn.addEventListener("click", () => {
+  taskModal.classList.remove("d-block");
 });
 
-addTaskModalBtn.addEventListener('click', () => {
+addTaskModalBtn.addEventListener("click", () => {
   setTask();
   updateTasks();
   updatePercentage();
-  // document.getElementById("taskInput").value = "";
 });
-

@@ -14,6 +14,10 @@ header nav .container ul a.myLi:hover {
   color: #0d6efd;
 }
 
+#audioAuthorization {
+  cursor: pointer;
+}
+
 div.myTimerModal {
   padding-top: 10%;
   background-color: rgba(0, 0, 0, 0.7);
@@ -22,4 +26,21 @@ div.myTimerModal {
 section#todo div.myModalBg {
   padding-top: 10%;
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+div#tasks input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+}
+
+#editTaskBtn {
+  cursor: pointer;
+}
+
+#removeTaskBtn {
+  cursor: pointer;
+}
+
+section#notes .myNote {
+  min-width: 170px;
+  min-height: 250px;
 }
