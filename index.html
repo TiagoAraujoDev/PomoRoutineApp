@@ -345,27 +345,14 @@
     <!--=========================== Notes Section ======================================== -->
     <section id="notes" class="vh-100 bg-primary">
       <h1 class="text-center text-light pt-5">Notes</h1>
-      <div class="container">
+      <div id="noteBtnContainer" class="container">
         <button id="addNotesbtn" type="button" class="btn btn-outline-dark">
           Add your note
         </button>
       </div>
       <div class="container mt-4">
-        <div id="notesAddedContainer" class="col-row">
+        <div id="notesAddedContainer" class="col-row d-flex">
           <!--This will be insert by javascript-->
-          <div class="col-1 card myNote">
-            <div class="card-header bg-dark d-flex justify-content-between">
-              <span class="text-white">title</span>
-              <div class="">
-                <i class="bx bxs-edit text-white"></i>
-                <i class="bx bx-trash text-white"></i>
-              </div>
-            </div>
-            <div class="card-body">
-              <span>Some text</span>
-            </div>
-          </div>
-          <!--END-->
         </div>
       </div>
       <!--======================== Note Modal ==========================-->
@@ -379,6 +366,7 @@
               <div class="modal-body d-flex flex-column align-items-center">
                 <input
                   id="noteTitleInput"
+                  maxlength="26"
                   type="text"
                   name="noteTitle"
                   class="form-control form-control-sm mt-2"
@@ -396,7 +384,7 @@
             </div>
             <div class="modal-footer justify-content-center">
               <button
-                id="closeEditModalBtn"
+                id="closeNoteModalBtn"
                 type="button"
                 class="btn btn-secondary"
                 data-bs-dismiss="modal"
@@ -405,6 +393,53 @@
               </button>
               <button
                 id="addNoteModalBtn"
+                type="button"
+                class="btn btn-primary"
+              >
+                Add note
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ============================ Edit Notes Modal============== -->
+      <div id="editNoteModal" class="modal myModalBg" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header justify-content-center">
+              <h5 class="modal-title">Edit your note</h5>
+            </div>
+            <div class="modal-body">
+              <div class="modal-body d-flex flex-column align-items-center">
+                <input
+                  id="editNoteTitleInput"
+                  maxlength="26"
+                  type="text"
+                  name="noteTitle"
+                  class="form-control form-control-sm mt-2"
+                  placeholder="Title..."
+                />
+              </div>
+              <div class="modal-body d-flex flex-column align-items-center">
+                <textarea
+                  name="noteBody"
+                  id="editNoteBodyInput"
+                  class="form-control form-control-sm mt-2"
+                  placeholder="Enter your Note"
+                ></textarea>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <button
+                id="closeEditModalBtn"
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                id="editNoteModalBtn"
                 type="button"
                 class="btn btn-primary"
               >

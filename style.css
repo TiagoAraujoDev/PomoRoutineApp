@@ -40,7 +40,26 @@ div#tasks input[type="checkbox"]:checked + span {
   cursor: pointer;
 }
 
+div#noteBtnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+section#notes div#notesAddedContainer {
+  gap: 5px;
+  overflow: auto;
+}
+
 section#notes .myNote {
-  min-width: 170px;
-  min-height: 250px;
+  min-width: 227px;
+  min-height: 370px;
+}
+
+span#title {
+  max-width: 70%;
+}
+
+div#noteModal {
+  padding-top: 10%;
+  background-color: rgba(0, 0, 0, 0.7);
 }
