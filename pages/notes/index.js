@@ -18,7 +18,7 @@ function createNote(title, body) {
     <div class="card-header bg-dark d-flex justify-content-between">
       <span id="title"  class="text-white">${title}</span>
       <div class="">
-        <i id="editNoteBtn" class="bx bxs-edit text-white" onclick="showEditModal(this)"></i>
+        <i id="editNoteBtn" class="bx bxs-edit text-white" onclick="showEditNoteModal(this)"></i>
         <i id="removeNoteBtn" class="bx bx-trash text-white" onclick="removeNote(this)"></i>
       </div>
     </div>
@@ -29,7 +29,7 @@ function createNote(title, body) {
   noteContainer.appendChild(note);
 }
 
-function showEditModal(htmlElement) {
+function showEditNoteModal(htmlElement) {
   editNoteModal.classList.add("d-block");
 
   editNoteModalBtn.addEventListener("click", () => {
@@ -101,4 +101,6 @@ addNoteModalBtn.addEventListener("click", () => {
   setNote();
   updateNotes();
   console.log("on");
+  titleInput.value = "";
+  bodyInput.value = "";
 });

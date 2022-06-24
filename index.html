@@ -1,457 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PomoRoutine</title>
-    <link
-      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./style.css" />
-    <!--Bootstrap-->
-    <link
-      rel="stylesheet"
-      href="./node_modules/bootstrap/dist/css/bootstrap.css"
-    />
-  </head>
-  <body>
-    <!--=========================== HEADER =================================-->
-    <header>
-      <nav class="fixed-top container navbar py-0 bg-dark myNav">
-        <div class="container">
-          <a class="navbar-brand text-white" href="#">PomoRoutine</a>
-          <ul class="nav navbar-nav d-flex flex-row d-flex flex-row me-5">
-            <li class="nav-item me-2">
-              <a class="nav-link link-light myLi" href="#timer">Pomodoro</a>
-            </li>
-            <li class="nav-item me-2">
-              <a class="nav-link link-light myLi" href="#todo">ToDo</a>
-            </li>
-            <li class="nav-item me-2">
-              <a class="nav-link link-light myLi" href="#notes">Notes</a>
-            </li>
-            <li class="nav-item me-2">
-              <a class="nav-link link-light myLi" href="#about">About</a>
-            </li>
-          </ul>
-          <div class="form-check form-switch">
-            <input
-              class="form-check-input text-secondary"
-              type="checkbox"
-              role="switch"
-              id="audioAuthorization"
-              checked
-            />
-            <label class="form-check-label" for="audiAuthorization"
-              ><i class="bx bxs-music text-white"></i
-            ></label>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <!--=========================== Timer =================================-->
-    <section
-      id="timer"
-      class="d-flex justify-content-center align-items-center vh-100"
-    >
-      <div class="d-flex flex-column align-items-center gap-5">
-        <div class="btn-group" aria-label="Buttons to configure timer">
-          <button
-            id="sessionSetting"
-            type="button"
-            class="btn btn-outline-secondary"
-          >
-            Session
-          </button>
-          <button
-            id="breakSetting"
-            type="button"
-            class="btn btn-outline-secondary"
-          >
-            Break
-          </button>
-          <button
-            id="longBreakSetting"
-            type="button"
-            class="btn btn-outline-secondary"
-          >
-            Long Break
-          </button>
-          <button
-            id="quantitySession"
-            type="button"
-            class="btn btn-outline-secondary"
-          >
-            Sessions
-          </button>
-        </div>
-        <div id="timerDisplay">
-          <span id="minText" class="fs-1 px-2">25</span
-          ><span class="fs-1">:</span
-          ><span id="secText" class="fs-1 px-2">00</span>
-        </div>
-        <div id="timerControlsBtn" class="d-grid gap-2 d-md-block">
-          <button id="startBtn" class="btn btn-success" type="button">
-            Start
-          </button>
-          <button on id="pauseBtn" class="btn btn-danger" type="button">
-            Pause
-          </button>
-          <button id="resetBtn" class="btn btn-secondary" type="button">
-            Reset
-          </button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PomoRoutine</title>
+  <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+  <!--Bootstrap-->
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css" />
+</head>
+
+<body>
+  <!--=========================== HEADER =====================================================-->
+  <header>
+    <nav class="fixed-top container navbar py-0 bg-dark myNav">
+      <div class="container">
+        <a class="navbar-brand text-white" href="#">PomoRoutine</a>
+        <ul class="nav navbar-nav d-flex flex-row d-flex flex-row me-5">
+          <li class="nav-item me-2">
+            <a class="nav-link link-light myLi" href="#timer">Pomodoro</a>
+          </li>
+          <li class="nav-item me-2">
+            <a class="nav-link link-light myLi" href="#todo">ToDo</a>
+          </li>
+          <li class="nav-item me-2">
+            <a class="nav-link link-light myLi" href="#notes">Notes</a>
+          </li>
+          <li class="nav-item me-2">
+            <a class="nav-link link-light myLi" href="#about">About</a>
+          </li>
+        </ul>
+        <div class="form-check form-switch">
+          <input class="form-check-input text-secondary" type="checkbox" role="switch" id="audioAuthorization"
+            checked />
+          <label class="form-check-label" for="audioAuthorization"><i class="bx bxs-music text-white"></i></label>
         </div>
       </div>
-    </section>
-    <!--=========================== Session Modal =================================-->
-    <div id="sessionModal" class="modal myTimerModal" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content bg-light">
-          <div class="modal-header flex-column justify-content-center">
-            <h5 class="modal-title">Session</h5>
-            <p class="text-muted mb-0">Settings</p>
-          </div>
-          <div class="modal-body d-flex flex-column align-items-center">
-            <label for="minSession"
-              >How many minutes should the session last?</label
-            >
-            <input
-              id="minSession"
-              type="number"
-              name="minutes"
-              class="form-control form-control-sm mt-2 w-50"
-              value="25"
-            />
-          </div>
-          <div class="modal-footer justify-content-center">
-            <button
-              id="closeModalbtn"
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary saveTimeBtn">
-              Save changes
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--=========================== Break Modal =================================-->
-    <div id="breakModal" class="modal myTimerModal" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content bg-light">
-          <div class="modal-header flex-column justify-content-center">
-            <h5 class="modal-title">Break</h5>
-            <p class="text-muted mb-0">Settings</p>
-          </div>
-          <div class="modal-body d-flex flex-column align-items-center">
-            <label for="minBreak"
-              >How many minutes should the break last?</label
-            >
-            <input
-              id="minBreak"
-              type="number"
-              name="minutes"
-              class="form-control form-control-sm mt-2 w-50"
-              value="5"
-            />
-          </div>
-          <div class="modal-footer justify-content-center">
-            <button
-              id="closeModalbtn"
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary saveTimeBtn">
-              Save changes
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--=========================== Long break Modal =================================-->
-    <div id="longBreakModal" class="modal myTimerModal" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content bg-light">
-          <div class="modal-header flex-column justify-content-center">
-            <h5 class="modal-title">Long Break</h5>
-            <p class="text-muted mb-0">Settings</p>
-          </div>
-          <div class="modal-body d-flex flex-column align-items-center">
-            <label for="min"
-              >How many minutes should the long break last?</label
-            >
-            <input
-              id="minLongBreak"
-              type="number"
-              name="minutes"
-              class="form-control form-control-sm mt-2 w-50"
-              value="10"
-            />
-          </div>
-          <div class="modal-footer justify-content-center">
-            <button
-              id="closeModalbtn"
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary saveTimeBtn">
-              Save changes
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- ========================== Quantity of sessions===============================-->
-    <div id="quantitySessionsModal" class="modal myTimerModal" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content bg-light">
-          <div class="modal-header flex-column justify-content-center">
-            <h5 class="modal-title">Quantity of sessions</h5>
-            <p class="text-muted mb-0">Settings</p>
-          </div>
-          <div class="modal-body d-flex flex-column align-items-center">
-            <label for="minSession">How many sessions do you want?</label>
-            <input
-              id="userSessionsQuantity"
-              type="number"
-              name="quantitySessions"
-              class="form-control form-control-sm mt-2 w-50"
-              value="4"
-            />
-          </div>
-          <div class="modal-footer justify-content-center">
-            <button
-              id="closeModalbtn"
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary saveTimeBtn">
-              Save changes
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--=========================== TODO =============================================-->
-    <section id="todo" class="vh-100 bg-success">
-      <h1 class="text-center text-light pt-5">ToDo</h1>
-      <div class="container card mb-3">
-        <div class="card-header d-flex justify-content-center bg-light">
-          <button id="addTaskBtn" class="btn btn-outline-success">
-            Add a Task
-          </button>
-        </div>
-        <div id="tasks" class="card-body"></div>
-      </div>
-      <div id="progressBar" class="container">
-        <div class="progress">
-          <div
-            id="progressPercentage"
-            class="progress-bar"
-            role="progressbar"
-            style="width: 0%"
-            aria-valuenow="25"
-            aria-valuemin="0"
-            aria-valuemax="100"
-          >
-            25%
-          </div>
-        </div>
-      </div>
-      <!--=========================== TASK MODAL ======================================== -->
-      <div id="taskModal" class="modal myModalBg" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header justify-content-center">
-              <h5 class="modal-title">Add your task</h5>
-            </div>
-            <div class="modal-body">
-              <div class="modal-body d-flex flex-column align-items-center">
-                <input
-                  id="taskInput"
-                  type="text"
-                  name="task"
-                  class="form-control form-control-sm mt-2"
-                  placeholder="Enter your task here..."
-                />
-              </div>
-            </div>
-            <div class="modal-footer justify-content-center">
-              <button
-                id="closeModalBtn"
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                id="addTaskModalBtn"
-                type="button"
-                class="btn btn-primary"
-              >
-                add task
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--=========================== EDIT TASK MODAL ======================================== -->
-      <div id="editTaskModal" class="modal myModalBg" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header justify-content-center">
-              <h5 class="modal-title">Edit your task</h5>
-            </div>
-            <div class="modal-body">
-              <div class="modal-body d-flex flex-column align-items-center">
-                <input
-                  id="editTaskInput"
-                  type="text"
-                  name="editTask"
-                  class="form-control form-control-sm mt-2"
-                  placeholder="Enter your task here..."
-                />
-              </div>
-            </div>
-            <div class="modal-footer justify-content-center">
-              <button
-                id="editTaskModalBtn"
-                type="button"
-                class="btn btn-primary"
-              >
-                Edit task
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--=========================== Notes Section ======================================== -->
-    <section id="notes" class="vh-100 bg-primary">
-      <h1 class="text-center text-light pt-5">Notes</h1>
-      <div id="noteBtnContainer" class="container">
-        <button id="addNotesbtn" type="button" class="btn btn-outline-dark">
-          Add your note
+    </nav>
+  </header>
+  <!--=========================== Timer ======================================================-->
+  <section id="timer" class="d-flex justify-content-center align-items-center vh-100">
+    <div class="d-flex flex-column align-items-center gap-5">
+      <div class="btn-group" aria-label="Buttons to configure timer">
+        <button id="sessionSetting" type="button" class="btn btn-outline-secondary">
+          Session
+        </button>
+        <button id="breakSetting" type="button" class="btn btn-outline-secondary">
+          Break
+        </button>
+        <button id="longBreakSetting" type="button" class="btn btn-outline-secondary">
+          Long Break
+        </button>
+        <button id="quantitySession" type="button" class="btn btn-outline-secondary">
+          Sessions
         </button>
       </div>
-      <div class="container mt-4">
-        <div id="notesAddedContainer" class="col-row d-flex">
-          <!--This will be insert by javascript-->
+      <div id="timerDisplay">
+        <span id="minText" class="fs-1 px-2">25</span><span class="fs-1">:</span><span id="secText"
+          class="fs-1 px-2">00</span>
+      </div>
+      <div id="timerControlsBtn" class="d-grid gap-2 d-md-block">
+        <button id="startBtn" class="btn btn-success" type="button">
+          Start
+        </button>
+        <button on id="pauseBtn" class="btn btn-danger" type="button">
+          Pause
+        </button>
+        <button id="resetBtn" class="btn btn-secondary" type="button">
+          Reset
+        </button>
+      </div>
+    </div>
+  </section>
+  <!--=========================== Session Modal ==============================================-->
+  <div id="sessionModal" class="modal myTimerModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content bg-light">
+        <div class="modal-header flex-column justify-content-center">
+          <h5 class="modal-title">Session</h5>
+          <p class="text-muted mb-0">Settings</p>
+        </div>
+        <div class="modal-body d-flex flex-column align-items-center">
+          <label for="minSession">How many minutes should the session last?</label>
+          <input id="minSession" type="number" name="minutes" class="form-control form-control-sm mt-2 w-50"
+            value="25" />
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button id="closeModalbtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary saveTimeBtn">
+            Save changes
+          </button>
         </div>
       </div>
-      <!--======================== Note Modal ==========================-->
-      <div id="noteModal" class="modal myModalBg" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header justify-content-center">
-              <h5 class="modal-title">Add your note</h5>
+    </div>
+  </div>
+  <!--=========================== Break Modal ================================================-->
+  <div id="breakModal" class="modal myTimerModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content bg-light">
+        <div class="modal-header flex-column justify-content-center">
+          <h5 class="modal-title">Break</h5>
+          <p class="text-muted mb-0">Settings</p>
+        </div>
+        <div class="modal-body d-flex flex-column align-items-center">
+          <label for="minBreak">How many minutes should the break last?</label>
+          <input id="minBreak" type="number" name="minutes" class="form-control form-control-sm mt-2 w-50" value="5" />
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button id="closeModalbtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary saveTimeBtn">
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--=========================== Long break Modal ===========================================-->
+  <div id="longBreakModal" class="modal myTimerModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content bg-light">
+        <div class="modal-header flex-column justify-content-center">
+          <h5 class="modal-title">Long Break</h5>
+          <p class="text-muted mb-0">Settings</p>
+        </div>
+        <div class="modal-body d-flex flex-column align-items-center">
+          <label for="min">How many minutes should the long break last?</label>
+          <input id="minLongBreak" type="number" name="minutes" class="form-control form-control-sm mt-2 w-50"
+            value="10" />
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button id="closeModalbtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary saveTimeBtn">
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ========================== Quantity of sessions========================================-->
+  <div id="quantitySessionsModal" class="modal myTimerModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content bg-light">
+        <div class="modal-header flex-column justify-content-center">
+          <h5 class="modal-title">Quantity of sessions</h5>
+          <p class="text-muted mb-0">Settings</p>
+        </div>
+        <div class="modal-body d-flex flex-column align-items-center">
+          <label for="minSession">How many sessions do you want?</label>
+          <input id="userSessionsQuantity" type="number" name="quantitySessions"
+            class="form-control form-control-sm mt-2 w-50" value="4" />
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button id="closeModalbtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary saveTimeBtn">
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--=========================== TODO =======================================================-->
+  <section id="todo" class="vh-100 bg-success">
+    <h1 class="text-center text-light pt-5">ToDo</h1>
+    <div class="container card mb-3">
+      <div class="card-header d-flex justify-content-center bg-light">
+        <button id="addTaskBtn" class="btn btn-outline-success">
+          Add a Task
+        </button>
+      </div>
+      <div id="tasks" class="card-body"></div>
+    </div>
+    <div id="progressBar" class="container">
+      <div class="progress">
+        <div id="progressPercentage" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="25"
+          aria-valuemin="0" aria-valuemax="100">
+          25%
+        </div>
+      </div>
+    </div>
+    <!--=========================== TASK MODAL ============================================== -->
+    <div id="taskModal" class="modal myModalBg" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center">
+            <h5 class="modal-title">Add your task</h5>
+          </div>
+          <div class="modal-body">
+            <div class="modal-body d-flex flex-column align-items-center">
+              <input id="taskInput" type="text" name="task" class="form-control form-control-sm mt-2"
+                placeholder="Enter your task here..." />
             </div>
-            <div class="modal-body">
-              <div class="modal-body d-flex flex-column align-items-center">
-                <input
-                  id="noteTitleInput"
-                  maxlength="26"
-                  type="text"
-                  name="noteTitle"
-                  class="form-control form-control-sm mt-2"
-                  placeholder="Title..."
-                />
-              </div>
-              <div class="modal-body d-flex flex-column align-items-center">
-                <textarea
-                  name="noteBody"
-                  id="noteBodyInput"
-                  class="form-control form-control-sm mt-2"
-                  placeholder="Enter your Note"
-                ></textarea>
-              </div>
-            </div>
-            <div class="modal-footer justify-content-center">
-              <button
-                id="closeNoteModalBtn"
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                id="addNoteModalBtn"
-                type="button"
-                class="btn btn-primary"
-              >
-                Add note
-              </button>
-            </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button id="closeTaskModalBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button id="addTaskModalBtn" type="button" class="btn btn-primary">
+              add task
+            </button>
           </div>
         </div>
       </div>
-      <!-- ============================ Edit Notes Modal============== -->
-      <div id="editNoteModal" class="modal myModalBg" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header justify-content-center">
-              <h5 class="modal-title">Edit your note</h5>
+    </div>
+    <!--=========================== EDIT TASK MODAL ========================================= -->
+    <div id="editTaskModal" class="modal myModalBg" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center">
+            <h5 class="modal-title">Edit your task</h5>
+          </div>
+          <div class="modal-body">
+            <div class="modal-body d-flex flex-column align-items-center">
+              <input id="editTaskInput" type="text" name="editTask" class="form-control form-control-sm mt-2"
+                placeholder="Enter your task here..." />
             </div>
-            <div class="modal-body">
-              <div class="modal-body d-flex flex-column align-items-center">
-                <input
-                  id="editNoteTitleInput"
-                  maxlength="26"
-                  type="text"
-                  name="noteTitle"
-                  class="form-control form-control-sm mt-2"
-                  placeholder="Title..."
-                />
-              </div>
-              <div class="modal-body d-flex flex-column align-items-center">
-                <textarea
-                  name="noteBody"
-                  id="editNoteBodyInput"
-                  class="form-control form-control-sm mt-2"
-                  placeholder="Enter your Note"
-                ></textarea>
-              </div>
-            </div>
-            <div class="modal-footer justify-content-center">
-              <button
-                id="closeEditModalBtn"
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                id="editNoteModalBtn"
-                type="button"
-                class="btn btn-primary"
-              >
-                Add note
-              </button>
-            </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button id="editTaskModalBtn" type="button" class="btn btn-primary">
+              Edit task
+            </button>
           </div>
         </div>
       </div>
-    </section>
-    <script src="./pages/timer/index.js"></script>
-    <script src="./pages/todo/index.js"></script>
-    <script src="./pages/notes/index.js"></script>
-  </body>
+    </div>
+  </section>
+  <!--=========================== Notes Section ============================================= -->
+  <section id="notes" class="vh-100 bg-primary">
+    <h1 class="text-center text-light pt-5">Notes</h1>
+    <div id="noteBtnContainer" class="container">
+      <button id="addNotesbtn" type="button" class="btn btn-outline-dark">
+        Add your note
+      </button>
+    </div>
+    <div class="container mt-4">
+      <div id="notesAddedContainer" class="col-row d-flex">
+        <!--This will be insert by javascript-->
+      </div>
+    </div>
+    <!--======================== Note Modal ==================================================-->
+    <div id="noteModal" class="modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center">
+            <h5 class="modal-title">Add your note</h5>
+          </div>
+          <div class="modal-body">
+            <div class="modal-body d-flex flex-column align-items-center">
+              <input id="noteTitleInput" maxlength="26" type="text" name="noteTitle"
+                class="form-control form-control-sm mt-2" placeholder="Title..." />
+            </div>
+            <div class="modal-body d-flex flex-column align-items-center">
+              <textarea name="noteBody" id="noteBodyInput" class="form-control form-control-sm mt-2"
+                placeholder="Enter your Note"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button id="closeNoteModalBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button id="addNoteModalBtn" type="button" class="btn btn-primary">
+              Add note
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================ Edit Notes Modal ====================================== -->
+    <div id="editNoteModal" class="modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center">
+            <h5 class="modal-title">Edit your note</h5>
+          </div>
+          <div class="modal-body">
+            <div class="modal-body d-flex flex-column align-items-center">
+              <input id="editNoteTitleInput" maxlength="26" type="text" name="noteTitle"
+                class="form-control form-control-sm mt-2" placeholder="Title..." />
+            </div>
+            <div class="modal-body d-flex flex-column align-items-center">
+              <textarea name="noteBody" id="editNoteBodyInput" class="form-control form-control-sm mt-2"
+                placeholder="Enter your Note"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button id="closeEditModalBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button id="editNoteModalBtn" type="button" class="btn btn-primary">
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--========================= ABOUT======================================================= -->
+  <section id="about" class="vh-100 bg-light">
+    <div class="container pt-5">
+      <h1 class="text-center fs-3">Pomodoro Technique</h1>
+      <p>The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late
+        1980s. It uses
+        a kitchen timer to break work into intervals, typically 25 minutes in length, separated by short breaks. Each
+        interval is known as a pomodoro, from the Italian word for tomato, after the tomato-shaped kitchen timer Cirillo
+        used as a university student.</p>
+      <p>The technique has been widely popularized by apps and websites providing timers and instructions.
+        Closely
+        related to concepts such as timeboxing and iterative and incremental development used in software design, the
+        method has been adopted in pair programming contexts.</p>
+    </div>
+    <div class="container mt-2">
+      <h2 class="text-center fs-4">The original technique has six steps:</h2>
+      <ol class="list-group list-group-numbered">
+        <li class="list-group-item">Decide on the task to be done.</li>
+        <li class="list-group-item">Set the pomodoro timer (typically for 25 minutes).</li>
+        <li class="list-group-item">Work on the task.</li>
+        <li class="list-group-item">End work when the timer rings and take a short break (typically 5–10 minutes).</li>
+        <li class="list-group-item">If you have finished fewer than three pomodoros, go back to Step 2 and repeat until
+          you go through all three
+          pomodoros.</li>
+        <li class="list-group-item">After three pomodoros are done, take the fourth pomodoro and then take a long break
+          (typically 20 to 30
+          minutes). Once the long break is finished, return to step 2.</li>
+      </ol>
+    </div>
+
+  </section>
+  <script src="./pages/timer/index.js"></script>
+  <script src="./pages/todo/index.js"></script>
+  <script src="./pages/notes/index.js"></script>
+</body>
+
 </html>
