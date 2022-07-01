@@ -31,7 +31,7 @@ div.myTimerModal {
 }
 
 section#todo {
-  padding-top: 10%;
+  padding-top: 5%;
 }
 
 section#todo div.myModalBg {
@@ -44,7 +44,7 @@ div#tasks input[type="checkbox"]:checked + span {
 }
 
 section#notes {
-  padding-top: 10%;
+  padding-top: 5%;
 }
 
 #editTaskBtn {
@@ -120,4 +120,16 @@ footer ul {
 }
 footer li a {
   font-size: 20px;
+}
+
+@media (max-width: 1000px) {
+  section#todo {
+    padding-top: 80px;
+  }
+  section#notes {
+    padding-top: 80px;
+  }
+  section#about {
+    padding-top: 80px;
+  }
 }
