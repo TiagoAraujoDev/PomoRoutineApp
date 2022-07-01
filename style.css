@@ -6,6 +6,11 @@ body {
   -ms-overflow-style: none;
 }
 
+img#logoImg {
+  width: 30px;
+  height: 30px;
+}
+
 header nav.myNav {
   border-radius: 0px 0px 10px 10px;
 }
