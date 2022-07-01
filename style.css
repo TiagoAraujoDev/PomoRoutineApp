@@ -10,10 +10,12 @@ header nav.myNav {
   border-radius: 0px 0px 10px 10px;
 }
 
-header nav .container ul a.myLi:hover {
-  color: #0d6efd;
+div#audioSwitch {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  
 }
-
 #audioAuthorization {
   cursor: pointer;
 }
@@ -23,6 +25,10 @@ div.myTimerModal {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+section#todo {
+  padding-top: 10%;
+}
+
 section#todo div.myModalBg {
   padding-top: 10%;
   background-color: rgba(0, 0, 0, 0.7);
@@ -30,6 +36,10 @@ section#todo div.myModalBg {
 
 div#tasks input[type="checkbox"]:checked + span {
   text-decoration: line-through;
+}
+
+section#notes {
+  padding-top: 10%;
 }
 
 #editTaskBtn {
@@ -55,6 +65,10 @@ section#notes .myNote {
   min-height: 370px;
 }
 
+section#about {
+  padding-top: 5%;
+}
+
 span#title {
   max-width: 70%;
 }
@@ -75,4 +89,30 @@ i#editNoteBtn {
 
 i#removeNoteBtn {
   cursor: pointer;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+}
+footer address {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+footer ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #222;
+  gap: 2px;
+  list-style-type: none;
+  padding: 0px;
+  margin-bottom: 0;
+}
+footer li a {
+  font-size: 20px;
 }

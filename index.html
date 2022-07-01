@@ -17,6 +17,56 @@
 <body>
   <!--=========================== HEADER =====================================================-->
   <header>
+    <div class="container fixed-top">
+    <nav class="navbar navbar-expand-md navbar-light bg-light myNav">
+     <a href="#pomodoro" class="navbar-brand mb-0 h1">
+       <img 
+       class="d-inline-block"
+       src="./assets/163_U1RVRElPIENBTSA1NTUtNjM.jpg" 
+       alt="Logo" 
+       width="30px" 
+       height="30px" 
+       style="border-radius: 10px;" />
+       PomoRoutine
+     </a> 
+     <button 
+       type="button"
+       data-bs-toggle="collapse"
+       data-bs-target="#navbarNav"
+       class="navbar-toggler"
+       aria-controls="navbarNav"
+       aria-expanded="false"
+       aria-label="toggle navigation"
+       >
+       <i class='bx bx-menu'></i>
+     </button>
+     <div class="collapse navbar-collapse" id="navbarNav">
+       <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link text-center" href="#timer">Pomodoro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-center" href="#todo">ToDo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-center" href="#notes">Notes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-center" href="#about">About</a>
+          </li>
+       </ul>
+     </div>
+    </nav>
+    </div>
+  </header>
+  <div id="audioSwitch" class="form-check form-switch">
+    <input class="form-check-input text-dark" type="checkbox" role="switch" id="audioAuthorization"
+      checked />
+    <label class="form-check-label" for="audioAuthorization"><i class="bx bxs-music"></i></label>
+  </div>
+  <!--=========================== HEADER =====================================================-->
+  <!--
+  <header>
     <nav class="fixed-top container navbar py-0 bg-dark myNav">
       <div class="container">
         <a class="navbar-brand text-white" href="#">PomoRoutine</a>
@@ -42,6 +92,7 @@
       </div>
     </nav>
   </header>
+  -->
   <!--=========================== Timer ======================================================-->
   <section id="timer" class="d-flex justify-content-center align-items-center vh-100">
     <div class="d-flex flex-column align-items-center gap-5">
@@ -173,7 +224,6 @@
   </div>
   <!--=========================== TODO =======================================================-->
   <section id="todo" class="vh-100 bg-success">
-    <h1 class="text-center text-light pt-5">ToDo</h1>
     <div class="container card mb-3">
       <div class="card-header d-flex justify-content-center bg-light">
         <button id="addTaskBtn" class="btn btn-outline-success">
@@ -237,8 +287,7 @@
     </div>
   </section>
   <!--=========================== Notes Section ============================================= -->
-  <section id="notes" class="vh-100 bg-primary">
-    <h1 class="text-center text-light pt-5">Notes</h1>
+  <section id="notes" class="vh-100 bg-warning">
     <div id="noteBtnContainer" class="container">
       <button id="addNotesbtn" type="button" class="btn btn-outline-dark">
         Add your note
@@ -308,8 +357,7 @@
   </section>
   <!--========================= ABOUT======================================================= -->
   <section id="about" class="vh-100 bg-light">
-    <div class="container pt-5">
-      <h1 class="text-center fs-3">Pomodoro Technique</h1>
+    <div class="container">
       <p>The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late
         1980s. It uses
         a kitchen timer to break work into intervals, typically 25 minutes in length, separated by short breaks. Each
@@ -320,8 +368,8 @@
         related to concepts such as timeboxing and iterative and incremental development used in software design, the
         method has been adopted in pair programming contexts.</p>
     </div>
-    <div class="container mt-2">
-      <h2 class="text-center fs-4">The original technique has six steps:</h2>
+    <div class="container"> 
+      <h6 class="text-center">The original technique has six steps:</h6>
       <ol class="list-group list-group-numbered">
         <li class="list-group-item">Decide on the task to be done.</li>
         <li class="list-group-item">Set the pomodoro timer (typically for 25 minutes).</li>
@@ -335,11 +383,32 @@
           minutes). Once the long break is finished, return to step 2.</li>
       </ol>
     </div>
-
+  <footer>
+    <address>Made by Tiago Araujo</address>
+    <ul>
+      <li>
+        <a href="https://github.com/TiagoAraujoDev" target="_blank"
+          ><i class="bx bxl-github"></i
+        ></a>
+      </li>
+      <li>
+        <a
+          href="https://www.linkedin.com/in/tiago-muniz-de-araujo-2b5b8a89/"
+          target="_blank"
+          ><i class="bx bxl-linkedin-square"></i
+        ></a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/tiagoaraujo42/" target="_blank"
+          ><i class="bx bxl-instagram"></i
+        ></a>
+      </li>
+    </ul>
+  </footer>
   </section>
   <script src="./pages/timer/index.js"></script>
   <script src="./pages/todo/index.js"></script>
   <script src="./pages/notes/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
-
 </html>
